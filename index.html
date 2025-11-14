@@ -1,0 +1,1181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transform Your Vision</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-size: 100% 100%;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation Menu */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: #1f2937;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: #667eea;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .donate-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white !important;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .donate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .donate-btn::after {
+            display: none;
+        }
+
+        /* Mobile menu toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #1f2937;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+                transform: translateY(-100%);
+                opacity: 0;
+                transition: all 0.3s ease;
+                pointer-events: none;
+            }
+
+            .nav-menu.active {
+                transform: translateY(0);
+                opacity: 1;
+                pointer-events: all;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px 60px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 150px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,0 C150,100 350,0 600,50 C850,100 1050,0 1200,50 L1200,120 L0,120 Z' fill='rgba(255,255,255,0.1)'/%3E%3C/svg%3E");
+            background-size: 200% 100%;
+            animation: wave 15s linear infinite;
+        }
+
+        .wave-container {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,50 C150,100 350,0 600,50 C850,100 1050,0 1200,50 L1200,120 L0,120 Z' fill='rgba(255,255,255,0.15)'/%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+            background-size: 50% 100%;
+            animation: wave 20s linear infinite;
+        }
+
+        .wave:nth-child(2) {
+            bottom: 10px;
+            animation: wave 15s linear infinite reverse;
+            opacity: 0.5;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,30 C200,80 400,0 600,40 C800,80 1000,10 1200,40 L1200,120 L0,120 Z' fill='rgba(255,255,255,0.1)'/%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+            background-size: 50% 100%;
+        }
+
+        .wave:nth-child(3) {
+            bottom: 20px;
+            animation: wave 25s linear infinite;
+            opacity: 0.3;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M0,40 C250,90 450,10 600,60 C750,110 950,20 1200,60 L1200,120 L0,120 Z' fill='rgba(255,255,255,0.08)'/%3E%3C/svg%3E");
+            background-repeat: repeat-x;
+            background-size: 50% 100%;
+        }
+
+        @keyframes wave {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .transform-word {
+            display: inline-block;
+        }
+
+        .transform-word span {
+            display: inline-block;
+            opacity: 1;
+            transform: translateY(0) rotate(0deg) scale(1);
+        }
+
+        .transform-word.animate span {
+            opacity: 0;
+            transform: translateY(-50px) rotate(45deg);
+            animation: blockFall 0.8s ease-out forwards;
+        }
+
+        .transform-word.animate span:nth-child(1) { animation-delay: 0.1s; }
+        .transform-word.animate span:nth-child(2) { animation-delay: 0.2s; }
+        .transform-word.animate span:nth-child(3) { animation-delay: 0.3s; }
+        .transform-word.animate span:nth-child(4) { animation-delay: 0.4s; }
+        .transform-word.animate span:nth-child(5) { animation-delay: 0.5s; }
+        .transform-word.animate span:nth-child(6) { animation-delay: 0.6s; }
+        .transform-word.animate span:nth-child(7) { animation-delay: 0.7s; }
+        .transform-word.animate span:nth-child(8) { animation-delay: 0.8s; }
+        .transform-word.animate span:nth-child(9) { animation-delay: 0.9s; }
+
+        @keyframes blockFall {
+            0% {
+                opacity: 0;
+                transform: translateY(-50px) rotate(45deg) scale(0.5);
+            }
+            60% {
+                transform: translateY(10px) rotate(0deg) scale(1.1);
+            }
+            80% {
+                transform: translateY(-5px) rotate(0deg) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) rotate(0deg) scale(1);
+            }
+        }
+
+        .vision-word {
+            position: relative;
+            display: inline-block;
+        }
+
+        .vision-blur {
+            position: absolute;
+            left: 0;
+            top: 0;
+            filter: blur(8px);
+            opacity: 0.6;
+            animation: focusIn 3s ease-in-out infinite;
+        }
+
+        .vision-clear {
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes focusIn {
+            0%, 100% {
+                filter: blur(8px);
+                opacity: 0.6;
+            }
+            50% {
+                filter: blur(0px);
+                opacity: 0;
+            }
+        }
+
+        .magnifying-glass {
+            display: inline-block;
+            margin-left: 15px;
+            font-size: 0.6em;
+            animation: magnify 2s ease-in-out infinite;
+            filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.3));
+        }
+
+        @keyframes magnify {
+            0%, 100% {
+                transform: scale(1) rotate(0deg);
+            }
+            50% {
+                transform: scale(1.2) rotate(15deg);
+            }
+        }
+
+        .tagline {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: rgba(255, 255, 255, 0.95);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        /* Summary Section */
+        .summary {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .floating-circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .circle:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            left: 10%;
+            top: 20%;
+            animation-delay: 0s;
+            animation-duration: 12s;
+        }
+
+        .circle:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            right: 15%;
+            top: 40%;
+            animation-delay: 3s;
+            animation-duration: 10s;
+        }
+
+        .circle:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            left: 70%;
+            top: 60%;
+            animation-delay: 7s;
+            animation-duration: 15s;
+        }
+
+        .circle:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            left: 30%;
+            bottom: 20%;
+            animation-delay: 5s;
+            animation-duration: 11s;
+        }
+
+        .circle:nth-child(5) {
+            width: 70px;
+            height: 70px;
+            right: 40%;
+            top: 10%;
+            animation-delay: 10s;
+            animation-duration: 14s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0) scale(1);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-30px) translateX(20px) scale(1.1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: translateY(-50px) translateX(-20px) scale(0.9);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translateY(-20px) translateX(30px) scale(1.05);
+                opacity: 0.6;
+            }
+        }
+
+        .summary-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .summary h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 2rem;
+            color: #1f2937;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            padding: 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            transform: translateZ(0);
+            position: relative;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            border-radius: 16px;
+            background: linear-gradient(145deg, rgba(255,255,255,0.3), rgba(255,255,255,0));
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .feature-card > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .feature-card:nth-child(1) {
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+        }
+
+        .feature-card:nth-child(2) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(79, 172, 254, 0.4);
+        }
+
+        .feature-card:nth-child(3) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(67, 233, 123, 0.4);
+        }
+
+        .feature-card:nth-child(4) {
+            background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(250, 112, 154, 0.4);
+        }
+
+        .feature-card:nth-child(1) h3,
+        .feature-card:nth-child(2) h3,
+        .feature-card:nth-child(3) h3,
+        .feature-card:nth-child(4) h3 {
+            color: white;
+        }
+
+        .feature-card:nth-child(1) p,
+        .feature-card:nth-child(2) p,
+        .feature-card:nth-child(3) p,
+        .feature-card:nth-child(4) p {
+            color: rgba(255, 255, 255, 0.95);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+
+        .feature-card:nth-child(1):hover {
+            box-shadow: 0 20px 50px rgba(255, 107, 157, 0.6);
+        }
+
+        .feature-card:nth-child(2):hover {
+            box-shadow: 0 20px 50px rgba(79, 172, 254, 0.6);
+        }
+
+        .feature-card:nth-child(3):hover {
+            box-shadow: 0 20px 50px rgba(67, 233, 123, 0.6);
+        }
+
+        .feature-card:nth-child(4):hover {
+            box-shadow: 0 20px 50px rgba(250, 112, 154, 0.6);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: #6b7280;
+            line-height: 1.7;
+        }
+
+        /* Form Section */
+        .form-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, 
+                #ff0000 0%,
+                #ff7f00 14.28%,
+                #ffff00 28.56%,
+                #00ff00 42.84%,
+                #0000ff 57.12%,
+                #4b0082 71.4%,
+                #9400d3 85.68%,
+                #ff0000 100%);
+            background-size: 200% 200%;
+            animation: rainbowShift 15s ease infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Prayer Request Section */
+        .prayer-section {
+            padding: 80px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prayer-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .prayer-particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .prayer-particle {
+            position: absolute;
+            font-size: 1.5rem;
+            opacity: 0.6;
+            animation: floatPrayer 8s infinite ease-in-out;
+        }
+
+        .prayer-particle:nth-child(1) { left: 10%; top: 20%; animation-delay: 0s; }
+        .prayer-particle:nth-child(2) { left: 80%; top: 30%; animation-delay: 2s; }
+        .prayer-particle:nth-child(3) { left: 50%; top: 60%; animation-delay: 4s; }
+        .prayer-particle:nth-child(4) { left: 20%; top: 70%; animation-delay: 1s; }
+        .prayer-particle:nth-child(5) { left: 70%; top: 80%; animation-delay: 3s; }
+
+        @keyframes floatPrayer {
+            0%, 100% {
+                transform: translateY(0) scale(1);
+                opacity: 0.4;
+            }
+            50% {
+                transform: translateY(-20px) scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .prayer-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 2;
+        }
+
+        .prayer-container h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 1rem;
+            color: #1f2937;
+            text-align: center;
+        }
+
+        .prayer-subtitle {
+            color: #6b7280;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        @keyframes rainbowShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .rainbow-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.85);
+            z-index: 0;
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.4), rgba(139, 92, 246, 0.4));
+            border-radius: 50%;
+            animation: rise 15s infinite ease-in;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 12s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 15s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: 4s; animation-duration: 18s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: 1s; animation-duration: 14s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: 3s; animation-duration: 16s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: 5s; animation-duration: 13s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: 2.5s; animation-duration: 17s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: 4.5s; animation-duration: 15s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: 1.5s; animation-duration: 19s; }
+        .particle:nth-child(10) { left: 15%; animation-delay: 6s; animation-duration: 14s; }
+        .particle:nth-child(11) { left: 25%; animation-delay: 3.5s; animation-duration: 16s; }
+        .particle:nth-child(12) { left: 35%; animation-delay: 5.5s; animation-duration: 18s; }
+        .particle:nth-child(13) { left: 45%; animation-delay: 2s; animation-duration: 13s; }
+        .particle:nth-child(14) { left: 55%; animation-delay: 4s; animation-duration: 17s; }
+        .particle:nth-child(15) { left: 65%; animation-delay: 1s; animation-duration: 15s; }
+
+        @keyframes rise {
+            0% {
+                bottom: 0;
+                opacity: 0;
+                transform: translateX(0) scale(1);
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                bottom: 100%;
+                opacity: 0;
+                transform: translateX(50px) scale(0.5);
+            }
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            position: relative;
+            z-index: 2;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-container h2 {
+            font-size: clamp(1.8rem, 3vw, 2.5rem);
+            margin-bottom: 1rem;
+            color: #1f2937;
+        }
+
+        .form-subtitle {
+            color: #6b7280;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #374151;
+            font-weight: 500;
+        }
+
+        input, textarea, select {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input:focus, textarea:focus, select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        button {
+            width: 100%;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 16px rgba(99, 102, 241, 0.3);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+            color: white;
+            padding: 60px 20px 30px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #d1d5db;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9ca3af;
+        }
+
+        .venmo-link {
+            color: #3d95ce;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .venmo-link:hover {
+            color: #5bb4e8;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            opacity: 0.5;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 2rem 1.5rem;
+            }
+            
+            .summary-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="nav-logo">Transform Your Vision</div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#events">Upcoming Events</a></li>
+                <li><a href="#wins">Recent Wins</a></li>
+                <li><a href="#prayer-request">Prayer Request</a></li>
+                <li><a href="https://venmo.com/YourVenmoUsername" class="donate-btn" target="_blank">Donate</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1><span class="transform-word"><span>T</span><span>r</span><span>a</span><span>n</span><span>s</span><span>f</span><span>o</span><span>r</span><span>m</span></span> Your <span class="vision-word"><span class="vision-blur">Vision</span><span class="vision-clear">Vision</span></span><span class="magnifying-glass">🔍</span></h1>
+            <p class="tagline">Changing how you see the world around you.</p>
+        </div>
+        <div class="wave-container">
+            <div class="wave"></div>
+            <div class="wave"></div>
+            <div class="wave"></div>
+        </div>
+        <div class="scroll-indicator">↓</div>
+    </section>
+
+    <!-- Summary Section -->
+    <section class="summary">
+        <div class="floating-circles">
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </div>
+        <div class="container">
+            <div class="summary-content">
+                <h2>A Place Where Every Heart Belongs</h2>
+                <p style="font-size: 1.2rem; color: #4b5563; line-height: 1.8;">
+                    We are a community-focused organization dedicated to bringing people of all backgrounds together through meaningful connections and shared experiences rooted in Christian values. We provide a welcoming online community that is completely free, allowing members to connect, share, and grow together in faith. In addition to our free offerings, we offer paid courses and events designed to deepen personal growth, strengthen relationships, and foster spiritual development. Our mission is to create inclusive spaces where everyone can experience fellowship, encouragement, and transformation through Christ-centered connection.
+                </p>
+                
+                <div class="summary-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🕊️</div>
+                        <h3>Purpose</h3>
+                        <p>Discover your God-given purpose and walk boldly in it. We help you align your passions, talents, and faith so your life reflects the calling placed on your heart.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🤝</div>
+                        <h3>Friends</h3>
+                        <p>Find real, faith-filled friendships that uplift and inspire you. Join a community where encouragement, laughter, and support are shared freely.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">✞</div>
+                        <h3>Faith</h3>
+                        <p>Grow deeper in your relationship with Christ through daily connection, learning, and reflection. Faith isn’t just believed here — it’s lived.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚛️</div>
+                        <h3>Results</h3>
+                        <p>Experience transformation that lasts — spiritually, personally, and relationally. Our teachings and gatherings lead to real growth and real change.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section">
+        <div class="rainbow-overlay"></div>
+        <div class="particles">
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+            <div class="particle"></div>
+        </div>
+        <div class="form-container">
+            <h2>Let's Connect</h2>
+            <p class="form-subtitle">Ready for change? Tell us about it.</p>
+            
+            <form id="intakeForm">
+                <div class="form-group">
+                    <label for="name">Full Name *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Are you ready for a change?</label>
+                    <input type="text" id="company" name="company">
+                </div>
+
+                <div class="form-group">
+                    <label for="projectType">Goal *</label>
+                    <select id="projectType" name="projectType" required>
+                        <option value="">Select an option</option>
+                        <option value="web">Connection</option>
+                        <option value="design">Purpose</option>
+                        <option value="consulting">Change</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Tell us about yourself *</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+
+                <button type="submit">Submit Your Request</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Prayer Request Section -->
+    <section class="prayer-section" id="prayer-request">
+        <div class="prayer-particles">
+            <div class="prayer-particle">🙏</div>
+            <div class="prayer-particle">✨</div>
+            <div class="prayer-particle">🕊️</div>
+            <div class="prayer-particle">💫</div>
+            <div class="prayer-particle">🙏</div>
+        </div>
+        <div class="prayer-container">
+            <h2>🙏 Prayer Request</h2>
+            <p class="prayer-subtitle">We're here to pray with you. Share your request and our community will lift you up.</p>
+            
+            <form id="prayerForm">
+                <div class="form-group">
+                    <label for="prayerName">Your Name *</label>
+                    <input type="text" id="prayerName" name="prayerName" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="prayerEmail">Email Address (optional)</label>
+                    <input type="email" id="prayerEmail" name="prayerEmail">
+                </div>
+
+                <div class="form-group">
+                    <label for="prayerType">Request Type *</label>
+                    <select id="prayerType" name="prayerType" required>
+                        <option value="">Select a category</option>
+                        <option value="health">Health & Healing</option>
+                        <option value="guidance">Guidance & Direction</option>
+                        <option value="relationships">Relationships</option>
+                        <option value="thanksgiving">Thanksgiving & Praise</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="prayerRequest">Your Prayer Request *</label>
+                    <textarea id="prayerRequest" name="prayerRequest" required placeholder="Share what's on your heart..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label style="display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                        <input type="checkbox" id="anonymous" name="anonymous" style="width: auto;">
+                        <span>Keep my request anonymous</span>
+                    </label>
+                </div>
+
+                <button type="submit">Submit Prayer Request</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Transform Your Vision</h3>
+                <p style="color: #d1d5db; line-height: 1.6;">
+                    Bringing people together through meaningful connections and shared experiences rooted in Christian values.
+                </p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#donation">Support Our Work</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Support Us</h3>
+                <p style="color: #d1d5db; margin-bottom: 0.5rem;">Like what we do? Buy us a coffee!</p>
+                <a href="https://venmo.com/YourVenmoUsername" class="venmo-link" target="_blank">@jlpagel/venmo</a>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2024 Transform Your Vision. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const navMenu = document.getElementById('navMenu');
+            navMenu.classList.toggle('active');
+        }
+
+        // Scroll-based grayscale to color transition
+        let scrollY = 0;
+        
+        function updateColorTransition() {
+            const maxScroll = document.body.scrollHeight - window.innerHeight;
+            const scrollPercent = Math.min(scrollY / maxScroll, 1);
+            
+            // Calculate grayscale (100% at top, 0% at bottom)
+            const grayscale = Math.max(0, 100 - (scrollPercent * 100));
+            
+            // Calculate saturation (0% at top, 150% at bottom for extra vibrancy)
+            const saturation = 100 + (scrollPercent * 50);
+            
+            document.body.style.filter = `grayscale(${grayscale}%) saturate(${saturation}%)`;
+        }
+
+        // Smooth scroll tracking
+        window.addEventListener('scroll', () => {
+            scrollY = window.scrollY;
+            requestAnimationFrame(updateColorTransition);
+        });
+
+        // Initialize on load
+        updateColorTransition();
+
+        // Transform word animation on mouse move
+        const transformWord = document.querySelector('.transform-word');
+        let isAnimating = false;
+        let mouseMoveTimeout;
+
+        window.addEventListener('mousemove', () => {
+            // Clear any existing timeout
+            clearTimeout(mouseMoveTimeout);
+            
+            // Only trigger if not currently animating
+            if (!isAnimating) {
+                isAnimating = true;
+                transformWord.classList.remove('animate');
+                
+                // Force reflow to restart animation
+                void transformWord.offsetWidth;
+                
+                transformWord.classList.add('animate');
+                
+                // Reset after animation completes
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 1700); // Total animation time (0.9s delay + 0.8s animation)
+            }
+            
+            // Set timeout to stop retriggering after mouse stops
+            mouseMoveTimeout = setTimeout(() => {
+                isAnimating = false;
+            }, 100);
+        });
+
+        // Trigger animation on page load
+        window.addEventListener('load', () => {
+            transformWord.classList.add('animate');
+        });
+
+        // Form submission
+        document.getElementById('intakeForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for your submission! We\'ll be in touch soon.');
+            e.target.reset();
+        });
+
+        // Prayer form submission
+        document.getElementById('prayerForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Thank you for sharing your prayer request. Our community is praying for you. 🙏');
+            e.target.reset();
+        });
+
+        // Hide scroll indicator after scrolling
+        window.addEventListener('scroll', () => {
+            const indicator = document.querySelector('.scroll-indicator');
+            if (window.scrollY > 100) {
+                indicator.style.opacity = '0';
+            } else {
+                indicator.style.opacity = '0.5';
+            }
+        });
+    </script>
+</body>
+</html>
