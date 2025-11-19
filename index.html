@@ -874,6 +874,38 @@
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-9Y70LB7TT1');
+
+        function handleSubmit(event) {
+  event.preventDefault();
+  const form = event.target;
+  const data = new FormData(form);
+  
+  console.log("Form submitted!");
+  console.log("Form data:", Object.fromEntries(data));
+  
+  fetch("https://script.google.com/macros/s/AKfycbzJJOFBRtk5oZLtwKuc6FQHNVn63ULFw_CMVt9T7dpNDx6vY9iYG5hympqCKXTYFMnQJg/exec", {
+    method: "POST",
+    body: data
+  })
+  .then(response => {
+    console.log("Response received:", response.status);
+    return response.text();
+  })
+  .then(text => {
+    console.log("Response text:", text);
+    if (text.includes("Success")) {
+      document.getElementById("formContainer").style.display = "none";
+      document.getElementById("thankYouMessage").style.display = "block";
+    } else {
+      alert("Something went wrong. Please try again.");
+    }
+  })
+  .catch(error => {
+    console.error("Error!", error);
+    alert("Submission failed: " + error.message);
+  });
+}
+    
     </script>
 </head>
 <body>
@@ -1188,3 +1220,4 @@
 </body>
 
 </html>
+
