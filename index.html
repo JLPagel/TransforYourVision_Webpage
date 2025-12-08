@@ -152,7 +152,7 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 140px 20px 60px;
+            padding: 0 20px;
             position: relative;
             overflow: hidden;
             background: linear-gradient(135deg, #1a4d2e 0%, #2d5f3f 50%, #4a7c59 100%);
@@ -222,7 +222,7 @@
         .hero-content {
             position: relative;
             z-index: 1;
-            margin-top: 40px;
+            padding-top: 80px;
         }
 
         h1 {
@@ -891,6 +891,20 @@
 </head>
 <body>
 
+            <div class="nav-container">
+            <div class="nav-logo">Transform Your Vision</div>
+            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#faith">Faith & Healing</a></li>
+                <li><a href="#sessions">Sessions</a></li>
+                <li><a href="#expect">What to Expect</a></li>
+                <li><a href="#contact">Book Now</a></li>
+                <li><a href="https://venmo.com/YourVenmoUsername" class="donate-btn" target="_blank">Gift a Session</a></li>
+            </ul>
+        </div>
+    </nav>
+
         <div class="hero-content">
             <h1><span class="transform-word"><span>T</span><span>r</span><span>a</span><span>n</span><span>s</span><span>f</span><span>o</span><span>r</span><span>m</span></span> Your <span class="vision-word"><span class="vision-blur">Vision</span><span class="vision-clear">Vision</span></span><span class="magnifying-glass">🔍</span></h1>
             <p class="tagline">Experience Master-Level Energy Healing</p>
@@ -943,19 +957,7 @@
         </div>
     </section>
     <nav>
-        <div class="nav-container">
-            <div class="nav-logo">Transform Your Vision</div>
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
-            <ul class="nav-menu" id="navMenu">
-                <li><a href="#about">About</a></li>
-                <li><a href="#faith">Faith & Healing</a></li>
-                <li><a href="#sessions">Sessions</a></li>
-                <li><a href="#expect">What to Expect</a></li>
-                <li><a href="#contact">Book Now</a></li>
-                <li><a href="https://venmo.com/YourVenmoUsername" class="donate-btn" target="_blank">Gift a Session</a></li>
-            </ul>
-        </div>
-    </nav>
+
 
     <section class="form-section" id="contact">
         <div class="form-container">
@@ -1236,6 +1238,7 @@
     </script>
 </body>
 </html>
+
 
 
 
